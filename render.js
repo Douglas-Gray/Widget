@@ -3,18 +3,22 @@ const svg = d3.select('svg');
 const width = +svg.attr('width');
 const height = +svg.attr('height');
 
-var values = [
-  {"x":0, "y":0},
-  {"x":0, "y":0}
+var graphData = [
+  {"x":0, "y":0, "dataSet":1},
+  {"x":10, "y":10, "dataSet":1},
+  {"x":20, "y":30, "dataSet":1},
+  {"x":0, "y":0, "dataSet":2},
+  {"x":30, "y":20, "dataSet":2},
+  {"x":60, "y":40, "dataSet":2}
   ]
 
   const render = data => {
     const title = 'Test Graph';
     
     const xValue = d => d.x;
-    const xAxisLabel = 'X';
-    
     const yValue = d => d.y;
+
+    const xAxisLabel = 'X';
     const yAxisLabel = 'Y';
     
     const margin = { top: 100, right: 40, bottom: 95, left: 110 };
@@ -70,29 +74,34 @@ var values = [
       .x(d => xScale(xValue(d)))
       .y(d => yScale(yValue(d)))
       .curve(d3.curveBasis);
+
+    const nested = d3.group(graphData, d => d.dataSet); 
+
+    console.log(nested);
     
-    g.append('path')
+    g.selectAll('.line-path').data(nested)
+        .enter().append('path')
         .attr('class', 'line-path')
-        .attr('d', lineGenerator(data));
-    
+        .attr('d', d => lineGenerator(d[1]));
+
     g.append('text')
         .attr('class', 'title')
         .attr('y', -15)
         .text(title);
   };
 
-      values.forEach(d => {
+      graphData.forEach(d => {
         d.x = +d.x;
         d.y = +d.y;
       });
-      render(values);
+      render(graphData);
 
 
       function renderInput(){
 
         d3.selectAll("svg > *").remove();
 
-        var values = [{"x":0, "y":0}]
+        var graphData = [{"x":0, "y":0}]
 
         var x1 = document.getElementById("x1").value;
         var time = document.getElementById("time").value; 
@@ -105,11 +114,11 @@ var values = [
           velocity += 1; 
   
           increment += x1 * velocity;
-          values.push({"x":i, "y":increment});
+          graphData.push({"x":i, "y":increment});
           i++; 
 
         }
         
-        console.log(values); 
-        render(values);
+        console.log(graphData); 
+        render(graphData);
       }

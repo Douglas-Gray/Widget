@@ -4,12 +4,8 @@ const width = +svg.attr('width');
 const height = +svg.attr('height');
 
 var values = [
-    {"x":"10", "y":"100"},
-    {"x":"20", "y":"500"},
-    {"x":"5000", "y":"800"},
-    {"x":"10", "y":"100"},
-    {"x":"20", "y":"500"},
-    {"x":"5000", "y":"800"}
+  {"x":0, "y":0},
+  {"x":0, "y":0}
   ]
 
   const render = data => {
@@ -90,3 +86,30 @@ var values = [
         d.y = +d.y;
       });
       render(values);
+
+
+      function renderInput(){
+
+        d3.selectAll("svg > *").remove();
+
+        var values = [{"x":0, "y":0}]
+
+        var x1 = document.getElementById("x1").value;
+        var time = document.getElementById("time").value; 
+        var velocity = parseInt(document.getElementById("velocity").value); 
+
+        let increment = 0; 
+        let i = 1;
+        while (i <= time) {
+
+          velocity += 1; 
+  
+          increment += x1 * velocity;
+          values.push({"x":i, "y":increment});
+          i++; 
+
+        }
+        
+        console.log(values); 
+        render(values);
+      }

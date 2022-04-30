@@ -4,14 +4,13 @@ body {
 }
 
 circle {
-  fill: steelblue;
 }
 
 .line-path {
   fill: none;
-  stroke: maroon;
   stroke-width: 4;
   stroke-linejoin: round;
+  stroke-linecap: round;
 }
 
 text {

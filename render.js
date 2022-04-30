@@ -4,12 +4,14 @@ const width = +svg.attr('width');
 const height = +svg.attr('height');
 
 var graphData = [
-  {"x":0, "y":0},
-  {"x":15, "y":10},
-  {"x":20, "y":50,}
+  {"x":0, "y":0, "dataSet":0},
+  {"x":15, "y":10, "dataSet":0},
+  {"x":20, "y":50, "dataSet":0}
   ]
 
 nested = d3.group(graphData, d => d.dataSet);
+
+console.log(nested);
 
   const render = data => {
     const title = 'Test Graph';
@@ -33,7 +35,10 @@ nested = d3.group(graphData, d => d.dataSet);
       .domain(d3.extent(data, yValue))
       .range([innerHeight, 0])
       .nice();
-    
+
+    const colourScale = d3.scaleOrdinal(d3.schemeCategory10);
+    colourScale.domain(nested); 
+ 
     const g = svg.append('g')
       .attr('transform', `translate(${margin.left},${margin.top})`);
     
@@ -73,11 +78,12 @@ nested = d3.group(graphData, d => d.dataSet);
       .x(d => xScale(xValue(d)))
       .y(d => yScale(yValue(d)))
       .curve(d3.curveBasis);
-   
+
     g.selectAll('.line-path').data(nested)
         .enter().append('path')
         .attr('class', 'line-path')
-        .attr('d', d => lineGenerator(d[1]));
+        .attr('d', d => lineGenerator(d[1]))
+        .attr('stroke', d => colourScale(d[1])); 
 
     g.append('text')
         .attr('class', 'title')

@@ -4,22 +4,21 @@ const width = +svg.attr('width');
 const height = +svg.attr('height');
 
 var graphData = [
-  {"x":0, "y":0, "dataSet":1},
-  {"x":10, "y":10, "dataSet":1},
-  {"x":20, "y":30, "dataSet":1},
-  {"x":0, "y":0, "dataSet":2},
-  {"x":30, "y":20, "dataSet":2},
-  {"x":60, "y":40, "dataSet":2}
+  {"x":0, "y":0},
+  {"x":15, "y":10},
+  {"x":20, "y":50,}
   ]
+
+nested = d3.group(graphData, d => d.dataSet);
 
   const render = data => {
     const title = 'Test Graph';
-    
+   
     const xValue = d => d.x;
     const yValue = d => d.y;
 
-    const xAxisLabel = 'X';
-    const yAxisLabel = 'Y';
+    const xAxisLabel = 'Time';
+    const yAxisLabel = 'Distance';
     
     const margin = { top: 100, right: 40, bottom: 95, left: 110 };
     const innerWidth = width - margin.left - margin.right;
@@ -74,11 +73,7 @@ var graphData = [
       .x(d => xScale(xValue(d)))
       .y(d => yScale(yValue(d)))
       .curve(d3.curveBasis);
-
-    const nested = d3.group(graphData, d => d.dataSet); 
-
-    console.log(nested);
-    
+   
     g.selectAll('.line-path').data(nested)
         .enter().append('path')
         .attr('class', 'line-path')
@@ -90,35 +85,4 @@ var graphData = [
         .text(title);
   };
 
-      graphData.forEach(d => {
-        d.x = +d.x;
-        d.y = +d.y;
-      });
-      render(graphData);
-
-
-      function renderInput(){
-
-        d3.selectAll("svg > *").remove();
-
-        var graphData = [{"x":0, "y":0}]
-
-        var x1 = document.getElementById("x1").value;
-        var time = document.getElementById("time").value; 
-        var velocity = parseInt(document.getElementById("velocity").value); 
-
-        let increment = 0; 
-        let i = 1;
-        while (i <= time) {
-
-          velocity += 1; 
-  
-          increment += x1 * velocity;
-          graphData.push({"x":i, "y":increment});
-          i++; 
-
-        }
-        
-        console.log(graphData); 
-        render(graphData);
-      }
+  render(graphData);

@@ -6,16 +6,22 @@
   <title>Example Graph</title>
   <link rel="stylesheet" href="style.css?version=1.1">
   <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script type="text/javascript" src="input.js"></script>
+ 
 </head>
-
 
 <body>
   <svg id="scatter" width="700" height="700"></svg>
-  <script src="render.js" type="text/javascript"></script>
+  <script type="text/javascript" src="render.js"></script>
+  
 
   <br>
   <label for="x1">X1: </label>
   <input id="x1" type="text" size="20"> 
+
+  <br>
+  <label for="x2">X2: </label>
+  <input id="x2" type="text" size="20">
 
   <br>
   <label for="velocity">Velocity: </label>
@@ -27,7 +33,7 @@
 
  
   <br>
-  <button onclick="renderInput()">Try it</button>
+  <button onclick="renderInput()">Submit</button>
   <p id="demo"></p>
 
 </body>

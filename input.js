@@ -9,7 +9,7 @@ function renderInput(){
     var time = document.getElementById("time").value; 
     var velocity = parseInt(document.getElementById("velocity").value); 
     
-    var focus = document.getElementById("focus").checked; 
+    var vortex = document.getElementById("vortex").checked; 
 
     //var velocity = 0; 
 
@@ -23,7 +23,7 @@ function renderInput(){
     let i = 1;
     while (i <= time) {
 
-        if (focus == true){
+        if (vortex == true){
             if (x1 >= 1){countup = false;}
             else if (x1 <= -1){countup = true;}
 

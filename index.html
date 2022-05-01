@@ -14,8 +14,10 @@
 <body>
   <svg id="scatter" width="700" height="700"></svg>
   <script type="text/javascript" src="render.js"></script>
-  
+  <script type="text/javascript" src="chkbox.js"></script>
 
+  <div class="ex1">
+  
   <br>
   <label for="x1">X1: </label>
   <input id="x1" type="text" size="20"> 
@@ -31,21 +33,29 @@
   <br>
   <label for="time">Time limit: </label>
   <input id="time" type="text" size="20">
+  
+  <br><br>
 
- 
+  <div id="chkboxgroup">
+   
+      <input type="checkbox" id="unstable" name="check[]" value="CheckBox1"/>
+      <label for="normal">Unstable node</label>
+
+      <input type="checkbox" id="vortex"name="check[]" value="CheckBox2"/>
+      <label for="focus">Vortex</label>
+
+      <input type="checkbox" id="focus" name="check[]" value="CheckBox3"/>
+      <label for="focus">Focus/Center</label>
+   
+  </div>
+  <script type="text/javascript"> oneChkbox()</script> 
+
   <br>
   <button onclick="renderInput()">Submit</button>
   <p id="demo"></p>
 
-  <div>
-
-  <input type="checkbox" id="normal" name="normal" value="normal">
-  <label for="normal">Normal</label>
-
-  <input type="checkbox" id="focus" name="focus" value="focus">
-  <label for="focus">Oscillation</label>
-
   </div>
+
 
 </body>
 </html>

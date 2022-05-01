@@ -20,7 +20,7 @@ console.log(nested);
     const yValue = d => d.y;
 
     const xAxisLabel = 'Time';
-    const yAxisLabel = 'Distance';
+    const yAxisLabel = 'x1, x2';
     
     const margin = { top: 100, right: 40, bottom: 95, left: 110 };
     const innerWidth = width - margin.left - margin.right;

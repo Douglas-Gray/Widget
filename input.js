@@ -1,22 +1,19 @@
 function renderInput(){
 
     graphData = []
+    nodeData = []
 
     d3.selectAll("svg > *").remove();
 
     var x1input = parseFloat(document.getElementById("x1").value);
-     
     var x2input = parseFloat(document.getElementById("x2").value);
     var time = parseInt(document.getElementById("time").value); 
+    
     var velocity = parseFloat(document.getElementById("velocity").value); 
      
     var vortex = document.getElementById("vortex").checked; 
     var focus = document.getElementById("focus").checked;
     var stable = document.getElementById("stable").checked;  
-
-    
-
-    //var velocity = 0; 
 
     let x1 = x1input;
     let x2 = x2input; 
@@ -25,17 +22,15 @@ function renderInput(){
 
     var countup = true; 
     var countup2 = false; 
-
     
     var change = 0; 
     var change2 = 0; 
-    
-   // var change = 1 / time; 
-  
-  
 
     let i = 1;
     while (i <= time) {
+
+        var x1parent = x1;
+        var x2parent = x2; 
     
         if (stable == true){
 
@@ -92,6 +87,8 @@ function renderInput(){
 
         console.log(x1);
         console.log(countup);
+
+        nodeData.push({"position":[i, x1.toFixed(2)] , "parentPosition": [i-1, x1parent.toFixed(2)]})
    
         graphData.push({"x":i, "y":x1.toFixed(2), "dataSet":1});
         graphData.push({"x":i, "y":x2.toFixed(2), "dataSet":2});
@@ -101,8 +98,7 @@ function renderInput(){
 
     nested = d3.group(graphData, d => d.dataSet);
 
-    console.log(graphData);
+    console.log(nodeData);
     render(graphData);
-    render2(graphData); 
-
+    render2(nodeData); 
 }

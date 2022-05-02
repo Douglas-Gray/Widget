@@ -8,14 +8,27 @@
   <link rel="stylesheet" href="style.css?version=1.1">
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script type="text/javascript" src="input.js"></script>
+  <script type="text/javascript" src="chkbox.js"></script>
  
 </head>
 
 <body>
-  <svg id="scatter" width="700" height="700"></svg>
-  <script type="text/javascript" src="render.js"></script>
-  <script type="text/javascript" src="chkbox.js"></script>
 
+  <div id="wrapper">
+    <div id="left">
+      <svg id="svg1" width="700" height="700"></svg>
+      <script type="text/javascript" src="render.js"></script>
+      
+    </div>
+    <div id="right">
+      <svg id="svg2" width="500" height="500"></svg>
+      <script type="text/javascript" src="quadrant.js"></script>
+      </div>
+
+    </div>
+  </div>
+  
+  
   <div class="ex1">
   
   <br>
@@ -38,8 +51,8 @@
 
   <div id="chkboxgroup">
    
-      <input type="checkbox" id="unstable" name="check[]" value="CheckBox1"/>
-      <label for="normal">Unstable node</label>
+      <input type="checkbox" id="stable" name="check[]" value="CheckBox1"/>
+      <label for="normal">Stable node</label>
 
       <input type="checkbox" id="vortex"name="check[]" value="CheckBox2"/>
       <label for="focus">Vortex</label>

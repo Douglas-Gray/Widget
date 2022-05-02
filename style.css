@@ -7,7 +7,26 @@ div.ex1 {
 padding: 20px;
 }
 
+#wrapper {
+  display: flex;
+}
+
+#left {
+  flex: 0% 0% 50%;
+}
+
+#right {
+  margin-top: 100px; 
+  flex: 1;
+}
+
 circle {
+}
+
+.arrow{
+  stroke-width:5;
+  stroke:#000;
+  stroke-dasharray:5, 5;
 }
 
 .line-path {

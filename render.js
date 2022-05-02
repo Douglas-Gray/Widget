@@ -1,7 +1,7 @@
-const svg = d3.select('svg');
+const svg1 = d3.select('#svg1');
 
-const width = +svg.attr('width');
-const height = +svg.attr('height');
+const width = +svg1.attr('width');
+const height = +svg1.attr('height');
 
 var graphData = [
   {"x":0, "y":0, "dataSet":0},
@@ -39,7 +39,7 @@ console.log(nested);
     const colourScale = d3.scaleOrdinal(d3.schemeCategory10);
     colourScale.domain(nested); 
  
-    const g = svg.append('g')
+    const g = svg1.append('g')
       .attr('transform', `translate(${margin.left},${margin.top})`);
     
     const xAxis = d3.axisBottom(xScale)

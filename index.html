@@ -16,7 +16,7 @@
 
   <div id="wrapper">
     <div id="left">
-      <svg id="svg1" width="700" height="700"></svg>
+      <svg id="svg1" width="600" height="600"></svg>
       <script type="text/javascript" src="render.js"></script>
       
     </div>
@@ -40,25 +40,24 @@
   <input id="x2" type="text" size="20">
 
   <br>
-  <label for="velocity">Velocity: </label>
-  <input id="velocity" type="text" size="20">
-
-  <br>
   <label for="time">Time limit: </label>
   <input id="time" type="text" size="20">
   
   <br><br>
 
   <div id="chkboxgroup">
-   
+
       <input type="checkbox" id="stable" name="check[]" value="CheckBox1"/>
       <label for="normal">Stable node</label>
+   
+      <input type="checkbox" id="unstable" name="check[]" value="CheckBox2"/>
+      <label for="normal">Unstable node</label>
 
-      <input type="checkbox" id="vortex"name="check[]" value="CheckBox2"/>
-      <label for="focus">Vortex</label>
-
-      <input type="checkbox" id="focus" name="check[]" value="CheckBox3"/>
+      <input type="checkbox" id="focus"name="check[]" value="CheckBox3"/>
       <label for="focus">Focus/Center</label>
+
+      <input type="checkbox" id="vortex" name="check[]" value="CheckBox4"/>
+      <label for="vortex">Vortex</label>
    
   </div>
   <script type="text/javascript"> oneChkbox()</script> 

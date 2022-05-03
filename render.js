@@ -5,19 +5,18 @@ const height = +svg1.attr('height');
 
 var graphData = [
   {"x":0, "y":0, "dataSet":0},
-  {"x":15, "y":10, "dataSet":0},
-  {"x":20, "y":50, "dataSet":0}
+  {"x":1, "y":1, "dataSet":0},
   ]
 
 nested = d3.group(graphData, d => d.dataSet);
+var title = 'Test Graph';
 
 console.log(nested);
 
   const render = data => {
-    const title = 'Test Graph';
    
-    const xValue = d => d.x;
-    const yValue = d => d.y;
+    const xValue = d => +d.x;
+    const yValue = d => +d.y;
 
     const xAxisLabel = 'Time';
     const yAxisLabel = 'x1, x2';
@@ -55,7 +54,7 @@ console.log(nested);
     
     yAxisG.append('text')
         .attr('class', 'axis-label')
-        .attr('y', -65)
+        .attr('y', -50)
         .attr('x', -innerHeight / 2)
         .attr('fill', 'black')
         .attr('transform', `rotate(-90)`)
@@ -69,7 +68,7 @@ console.log(nested);
     
     xAxisG.append('text')
         .attr('class', 'axis-label')
-        .attr('y', 70)
+        .attr('y', 60)
         .attr('x', innerWidth / 2)
         .attr('fill', 'black')
         .text(xAxisLabel);
@@ -77,7 +76,7 @@ console.log(nested);
     const lineGenerator = d3.line()
       .x(d => xScale(xValue(d)))
       .y(d => yScale(yValue(d)))
-      .curve(d3.curveBasis);
+      .curve(d3.curveBundle);
 
     g.selectAll('.line-path').data(nested)
         .enter().append('path')

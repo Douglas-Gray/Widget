@@ -3,22 +3,33 @@ function renderInput(){
     graphData = []
     nodeData = []
 
+    var x1;
+    var x2; 
+
     d3.selectAll("svg > *").remove();
 
     var x1input = parseFloat(document.getElementById("x1").value);
     var x2input = parseFloat(document.getElementById("x2").value);
     var time = parseInt(document.getElementById("time").value); 
     
-    var velocity = parseFloat(document.getElementById("velocity").value); 
-     
-    var vortex = document.getElementById("vortex").checked; 
+    var stable = document.getElementById("stable").checked; 
+    var unstable = document.getElementById("unstable").checked;
     var focus = document.getElementById("focus").checked;
-    var stable = document.getElementById("stable").checked;  
+    var vortex = document.getElementById("vortex").checked; 
 
-    let x1 = x1input;
-    let x2 = x2input; 
+    if (unstable == true){
+        x1 = 0;
+        x2 = 0; 
+        console.log(x1);
+    }
+    else{
+        x1 = x1input;
+        x2 = x2input;  
+    }
+
     graphData.push({"x":0, "y":x1, "dataSet":1});
     graphData.push({"x":0, "y":x2, "dataSet":2});
+    nodeData.push({"x":x1.toFixed(2), "y":x2.toFixed(2), "dataSet":1}); 
 
     var countup = true; 
     var countup2 = false; 
@@ -29,10 +40,13 @@ function renderInput(){
     let i = 1;
     while (i <= time) {
 
+        
         var x1parent = x1;
         var x2parent = x2; 
-    
-        if (stable == true){
+ 
+       if (stable == true){
+
+            title = 'Stable node'; 
 
             change = x1input / (time - i);
             change2 = x2input / (time - i); 
@@ -56,7 +70,18 @@ function renderInput(){
                }
         }
 
-        else if (vortex == true){
+        else if (unstable == true){
+
+            title = 'Unstable node'; 
+
+            x1 += x1input * (time - i); 
+            x2 += x2input * (time - i);
+
+        }
+
+        else if (focus == true){
+
+            title = 'Focus / center';
             
             if (x1 > x1input * 2){countup = false;}
             else if (x1 < x1input - x1input){countup = true;}
@@ -81,24 +106,24 @@ function renderInput(){
         }
 
     
-        else if (focus == true){
+        else if (vortex == true){
            
         }
 
-        console.log(x1);
-        console.log(countup);
-
-        nodeData.push({"position":[i, x1.toFixed(2)] , "parentPosition": [i-1, x1parent.toFixed(2)]})
+        //nodeData.push({"position":[i, x1.toFixed(2)] , "parentPosition": [i-1, x1parent.toFixed(2)]})
+        //nodeData.push({"position":[x1.toFixed(2), x2.toFixed(2)] , "parentPosition": [x1parent.toFixed(2), x2parent.toFixed(2)]})
    
+        nodeData.push({"x":x1.toFixed(2), "y":x2.toFixed(2), "dataSet":1}); 
         graphData.push({"x":i, "y":x1.toFixed(2), "dataSet":1});
         graphData.push({"x":i, "y":x2.toFixed(2), "dataSet":2});
         i++; 
 
     }   
-
+    chartTime = time; 
     nested = d3.group(graphData, d => d.dataSet);
+    nested2 = d3.group(nodeData, d => d.dataSet);
 
-    console.log(nodeData);
+    console.log(graphData);
     render(graphData);
     render2(nodeData); 
 }

@@ -3,19 +3,17 @@ const svg2 = d3.select("#svg2");
 var width2 = +svg2.attr("width"); 
 var height2 = +svg2.attr("height"); 
 
-var chartTime = 10; 
-var nodeData = [{"x":0, "y":0, "dataSet":0},
-                {"x":1, "y":1, "dataSet":0}]
+var nodeData = [{"position":[1, 1] , "parentPosition": [0, 0]},
+                {"position":[2, 2] , "parentPosition": [1, 1]},
+                {"position":[3, 3] , "parentPosition": [2, 2]},
+                {"position":[4, 4] , "parentPosition": [3, 3]}] 
 
-nested2 = d3.group(nodeData, d => d.dataSet);
+var title2 = 'Phase Space';
     
 var render2 = data => {
 
-    //var xValue = d => d.position[0];
-    //var yValue = d => d.position[1];
-
-    var xValue = d => +d.x;
-    var yValue = d => +d.y;
+    var xValue = d => +d.position[0];
+    var yValue = d => +d.position[1];
 
     var xAxisLabel = 'x1';
     var yAxisLabel = 'x2';
@@ -34,16 +32,11 @@ var render2 = data => {
     .range([innerHeight, 0])
     .nice();
 
-    
-    var colourScale = d3.scaleOrdinal(d3.schemeCategory10);
-    colourScale.domain(nested2); 
-    
-    /*
     var linkGen = d3.link(d3.curveBundle)
-    	.source(d => d.position)
-        .target(d => d.parentPosition)
+    	.source(d => d.parentPosition)
+        .target(d => d.position)
         .x(d => xScale(d[0]))
-        .y(d => yScale(d[1])); */
+        .y(d => yScale(d[1])); 
 
     var g = svg2.append("g")
             .attr('transform', `translate(${margin.left},${margin.top})`);
@@ -56,7 +49,8 @@ var render2 = data => {
         .tickSize(-innerWidth)
         .tickPadding(10);
 
-    var yAxisG = g.append('g').call(yAxis);
+    var yAxisG = g.append('g').call(yAxis)
+        .style("stroke-dasharray", ("3, 3")); 
         yAxisG.selectAll('.domain').remove();
     
     yAxisG.append('text')
@@ -69,6 +63,7 @@ var render2 = data => {
         .text(yAxisLabel);
         
     var xAxisG = g.append('g').call(xAxis)
+        .style("stroke-dasharray", ("3, 3")) 
         .attr('transform', `translate(0,${innerHeight})`);
         
     xAxisG.select('.domain').remove();
@@ -79,41 +74,37 @@ var render2 = data => {
         .attr('x', innerWidth / 2)
         .attr('fill', 'black')
         .text(xAxisLabel);
+
+    g.append("svg:defs").append("svg:marker")
+        .attr("id", "triangle")
+        .attr("refX", 11)
+        .attr("refY", 5.5)
+        .attr("markerWidth", 30)
+        .attr("markerHeight", 30)
+        .attr("markerUnits","userSpaceOnUse")
+        .attr("orient", "auto")
+        .append("path")
+        .attr("d", "M 0 0 12 6 0 12 3 6")
+        .style("fill", "#7129e5");
         
-   /* g.selectAll("path")
+    g.selectAll("path")
         .enter().append('path')
         .data(data)
         .join("path")
         .attr("d", linkGen)
-        .attr('stroke', 'black')
+        .attr('stroke', 'none')
         .attr('fill', 'none') 
+        .attr("marker-end", "url(#triangle)")
         .classed("link", true);  
 
-    g.selectAll("circle")
-        .data(data)
-        .enter().append("circle")
-        .attr("class", "dot")
-        .attr("r", 5)
-        .attr("cx", function(d) { return xScale(d.position[0]); })
-        .attr("cy", function(d) { return yScale(d.position[1]); }); 
-        .style("fill", function(d) {        
-          if (d.position[1] >= 3 && d.position[0] <= 3) {return "#60B19C"} // Top Left
-          else if (d.position[1] >= 3 && d.position[0] >= 3) {return "#8EC9DC"} // Top Right
-          else if (d.position[1] <= 3 && d.position[0] >= 3) {return "#D06B47"} // Bottom Left
-          else { return "#A72D73" } //Bottom Right         
-         });
-         */ 
-
-         var lineGenerator = d3.line()
-         .x(d => xScale(xValue(d)))
-         .y(d => yScale(yValue(d)))
-         .curve(d3.curveBundle);
-   
-       g.selectAll('.line-path').data(nested2)
-           .enter().append('path')
-           .attr('class', 'line-path')
-           .attr('d', d => lineGenerator(d[1]))
-           .attr('stroke', d => colourScale(d[1])); 
+    g.append('text')
+        .attr('class', 'title')
+        .attr('y', -15)
+        .text(title2);
+  
+        /* g.append('path')
+         .attr('class', 'line-path')
+         .attr('d', lineGenerator(data));*/ 
 
 };
 

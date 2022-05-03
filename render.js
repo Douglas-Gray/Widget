@@ -5,7 +5,7 @@ const height = +svg1.attr('height');
 
 var graphData = [
   {"x":0, "y":0, "dataSet":0},
-  {"x":1, "y":1, "dataSet":0},
+  {"x":4, "y":4, "dataSet":0},
   ]
 
 nested = d3.group(graphData, d => d.dataSet);

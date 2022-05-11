@@ -1,8 +1,9 @@
-const svg2 = d3.select("#svg2"); 
+const svg2 = d3.select("#svgPhase"); 
 
-var width2 = +svg2.attr("width"); 
-var height2 = +svg2.attr("height"); 
+const width2 = +svg2.attr("width"); 
+const height2 = +svg2.attr("height"); 
 
+/*default data for first display */
 var nodeData = [{"position":[1, 1] , "parentPosition": [0, 0]},
                 {"position":[2, 2] , "parentPosition": [1, 1]},
                 {"position":[3, 3] , "parentPosition": [2, 2]},
@@ -12,44 +13,44 @@ var title2 = 'Phase Space';
     
 var renderPhase = data => {
 
-    var xValue = d => +d.position[0];
-    var yValue = d => +d.position[1];
+    const xValue = d => +d.position[0];
+    const yValue = d => +d.position[1];
 
-    var xAxisLabel = 'x1';
-    var yAxisLabel = 'x2';
+    const xAxisLabel = 'x1';
+    const yAxisLabel = 'x2';
   
-    var margin = {top: 100, right: 40, bottom: 95, left: 110}; 
-    var innerWidth = width2 - margin.left - margin.right;
-    var innerHeight = height2 - margin.top - margin.bottom;
+    const margin = {top: 100, right: 40, bottom: 95, left: 110}; 
+    const innerWidth = width2 - margin.left - margin.right;
+    const innerHeight = height2 - margin.top - margin.bottom;
   
-    var xScale = d3.scaleLinear()
+    const xScale = d3.scaleLinear()
     .domain(d3.extent(data, xValue))
     .range([0, innerWidth])
     .nice();
   
-    var yScale = d3.scaleLinear()
+    const yScale = d3.scaleLinear()
     .domain(d3.extent(data, yValue))
     .range([innerHeight, 0])
     .nice();
 
-    var linkGen = d3.link(d3.curveBundle)
+    const linkGen = d3.link(d3.curveBundle)
     	.source(d => d.parentPosition)
         .target(d => d.position)
         .x(d => xScale(d[0]))
         .y(d => yScale(d[1])); 
 
-    var g = svg2.append("g")
+    const g = svg2.append("g")
             .attr('transform', `translate(${margin.left},${margin.top})`);
 
-    var xAxis = d3.axisBottom(xScale)
+    const xAxis = d3.axisBottom(xScale)
         .tickSize(-innerHeight)
         .tickPadding(15);
           
-    var yAxis = d3.axisLeft(yScale)
+    const yAxis = d3.axisLeft(yScale)
         .tickSize(-innerWidth)
         .tickPadding(10);
 
-    var yAxisG = g.append('g').call(yAxis)
+    const yAxisG = g.append('g').call(yAxis)
         .style("stroke-dasharray", ("3, 3")); 
         yAxisG.selectAll('.domain').remove();
     
@@ -62,7 +63,7 @@ var renderPhase = data => {
         .attr('text-anchor', 'middle')
         .text(yAxisLabel);
         
-    var xAxisG = g.append('g').call(xAxis)
+    const xAxisG = g.append('g').call(xAxis)
         .style("stroke-dasharray", ("3, 3")) 
         .attr('transform', `translate(0,${innerHeight})`);
         

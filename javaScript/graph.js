@@ -1,17 +1,17 @@
-const svg1 = d3.select('#svg1');
+const svg1 = d3.select('#svgGraph');
 
 const width = +svg1.attr('width');
 const height = +svg1.attr('height');
 
+/*default data for first display */
 var graphData = [
   {"x":0, "y":0, "dataSet":0},
   {"x":4, "y":4, "dataSet":0},
   ]
 
 nested = d3.group(graphData, d => d.dataSet);
-var title = 'Default Graph';
 
-console.log(nested);
+var title = 'Default Graph';
 
   const renderGraph = data => {
    

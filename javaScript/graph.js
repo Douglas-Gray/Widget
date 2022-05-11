@@ -13,7 +13,7 @@ var title = 'Default Graph';
 
 console.log(nested);
 
-  const render = data => {
+  const renderGraph = data => {
    
     const xValue = d => +d.x;
     const yValue = d => +d.y;
@@ -90,4 +90,4 @@ console.log(nested);
         .text(title);
   };
 
-  render(graphData);
+  renderGraph(graphData);

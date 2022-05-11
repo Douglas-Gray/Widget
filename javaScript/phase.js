@@ -10,7 +10,7 @@ var nodeData = [{"position":[1, 1] , "parentPosition": [0, 0]},
 
 var title2 = 'Phase Space';
     
-var render2 = data => {
+var renderPhase = data => {
 
     var xValue = d => +d.position[0];
     var yValue = d => +d.position[1];
@@ -108,4 +108,4 @@ var render2 = data => {
 
 };
 
-render2(nodeData); 
+renderPhase(nodeData); 

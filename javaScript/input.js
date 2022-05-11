@@ -39,13 +39,14 @@ function renderInput(){
      
         var x1parent = x1;
         var x2parent = x2; 
- 
+        
+        change = x1input / (time - (i / 2));
+        change2 = x2input / (time - (i / 2)); 
+
        if (stable == true){
 
             title = 'Stable node'; 
 
-            change = x1input / (i*2);
-            change2 = x2input / (i*2); 
            
             if (x1.toFixed(2) > 0){
                 if (x1 - change <= 0){x1 = 0;}
@@ -70,18 +71,16 @@ function renderInput(){
        
             title = 'Unstable node'; 
 
-            x1 += x1input / (i*2) 
-            x2 += x2input / (i*2);
+            x1 += change; 
+            x2 += change2;
          
         }
 
         else if (saddle == true){
 
             title = 'Saddle node'; 
-
-            x1 += x1input / (i*2); 
-
-            change2 = x2input / (i*2); 
+    
+            x1 += change; 
 
             if (x2.toFixed(2) > 0){
                 if (x2 - change2 <= 0){x2 = 0;}
@@ -113,6 +112,6 @@ function renderInput(){
     nested = d3.group(graphData, d => d.dataSet);
 
     console.log(nodeData);
-    render(graphData);
-    render2(nodeData); 
+    renderGraph(graphData);
+    renderPhase(nodeData); 
 }

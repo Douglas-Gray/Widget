@@ -33,17 +33,17 @@
   
   
   <div class="ex1">
-  
+
   <br>
   <label for="x1">X1: </label>
-  <input id="x1" type="text" size="10"> 
+  <input id="x1" type="text" value="1" size="10"> 
 
 
   <label for="x2">X2: </label>
-  <input id="x2" type="text" size="10">
+  <input id="x2" type="text" value="2" size="10">
 
   <label for="time">Time limit: </label>
-  <input id="time" type="text" size="10">
+  <input id="time" type="text" value="10" size="10">
   
   <br><br>
 
@@ -66,7 +66,20 @@
 
   <br>
   <button onclick="renderInput()">Submit</button>
-  <p id="demo"></p>
+
+  <input type="range" min="100" max="2000" value="500" step="10" class="slider" id="duration">
+  <label for="duration" id="durationName"> Animation length (ms):</label>
+  <label for="duration" id="durationVal"></label>
+
+  <script>
+    var slider = document.getElementById("duration");
+    var output = document.getElementById("durationVal");
+    output.innerHTML = slider.value;
+    
+    slider.oninput = function() {
+      output.innerHTML = this.value;
+    }
+    </script>
 
   </div>
 

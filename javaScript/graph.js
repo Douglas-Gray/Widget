@@ -9,10 +9,15 @@ var graphData = [{"x":0, "y":0, "dataSet":"x1"}, {"x":0, "y":0, "dataSet":"x2"},
 var nested = d3.group(graphData, d => d.dataSet);
 
 var title = 'Default Graph';
+var duration = 500; 
 
   const renderGraph = data => {
 
-   
+    var slider = document.getElementById("duration");
+    if (slider != null){
+      duration = slider.value; 
+    }
+
     const xValue = d => +d.x;
     const yValue = d => +d.y;
 
@@ -78,11 +83,19 @@ var title = 'Default Graph';
       .y(d => yScale(yValue(d)))
       .curve(d3.curveBundle);
 
-    g.selectAll('.line-path').data(nested)
+    var path = g.selectAll('.line-path').data(nested)
         .enter().append('path')
         .attr('class', 'line-path')
         .attr('d', d => lineGenerator(d[1]))
         .attr('stroke', d => colourScale(d[1])); 
+
+    path.transition()
+        .duration(duration)
+        .ease(d3.easeLinear)
+        .attrTween("stroke-dasharray", function() {
+          const length = this.getTotalLength();
+          return d3.interpolate(`0,${length}`, `${length},${length}`);
+        })
 
     g.append('text')
         .attr('class', 'title')

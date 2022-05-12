@@ -3,8 +3,8 @@ function renderInput(){
     graphData = []
     nodeData = []
 
-    var change = 0; 
-    var change2 = 0; 
+    var change; 
+    var change2; 
 
     d3.selectAll("svg > *").remove();
 

@@ -1,7 +1,6 @@
 function renderInput(){
 
     graphData = []
-    graphData2 = []
     nodeData = []
 
     var change = 0; 
@@ -30,9 +29,8 @@ function renderInput(){
         x2 = x2input; 
     }
 
-    graphData.push({"x":0, "y":x1, "dataSet":1});
-    graphData.push({"x":0, "y":x2, "dataSet":2});
-    graphData2.push({"x":x1.toFixed(2), "y":x2.toFixed(2), "dataSet":1}); 
+    graphData.push({"x":0, "y":x1, "dataSet":"x1"});
+    graphData.push({"x":0, "y":x2, "dataSet":"x2"});
 
     let i = 1;
     while (i <= time) {
@@ -47,7 +45,6 @@ function renderInput(){
 
             title = 'Stable node'; 
 
-           
             if (x1.toFixed(2) > 0){
                 if (x1 - change <= 0){x1 = 0;}
                 else {x1 -= change;}
@@ -98,13 +95,12 @@ function renderInput(){
             /* to be completed */
         }
 
-        if (x1parent != x1 && x2parent != x2){
+        if (x1parent != x1 || x2parent != x2){
             nodeData.push({"position":[x1.toFixed(2), x2.toFixed(2)] , "parentPosition": [x1parent.toFixed(2), x2parent.toFixed(2)]}); 
         }
    
-        graphData.push({"x":i, "y":x1.toFixed(2), "dataSet":1});
-        graphData.push({"x":i, "y":x2.toFixed(2), "dataSet":2});
-        graphData2.push({"x":x1.toFixed(2), "y":x2.toFixed(2), "dataSet":1});
+        graphData.push({"x":i, "y":x1.toFixed(2), "dataSet":"x1"});
+        graphData.push({"x":i, "y":x2.toFixed(2), "dataSet":"x2"});
         i++; 
 
     }   

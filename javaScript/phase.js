@@ -51,7 +51,7 @@ var renderPhase = data => {
         .tickPadding(10);
 
     const yAxisG = g.append('g').call(yAxis)
-        .style("stroke-dasharray", ("3, 3")); 
+        .style("stroke-dasharray", ("1, 2")); 
         yAxisG.selectAll('.domain').remove();
     
     yAxisG.append('text')
@@ -64,10 +64,10 @@ var renderPhase = data => {
         .text(yAxisLabel);
         
     const xAxisG = g.append('g').call(xAxis)
-        .style("stroke-dasharray", ("3, 3")) 
+        .style("stroke-dasharray", ("1, 2")) 
         .attr('transform', `translate(0,${innerHeight})`);
         
-    xAxisG.select('.domain').remove();
+   xAxisG.select('.domain').remove();
 
     xAxisG.append('text')
         .attr('class', 'axis-label')

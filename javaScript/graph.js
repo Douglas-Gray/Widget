@@ -1,19 +1,17 @@
 const svg1 = d3.select('#svgGraph');
-
 const width = +svg1.attr('width');
 const height = +svg1.attr('height');
 
 /*default data for first display */
-var graphData = [
-  {"x":0, "y":0, "dataSet":0},
-  {"x":4, "y":4, "dataSet":0},
-  ]
+var graphData = [{"x":0, "y":0, "dataSet":"x1"}, {"x":0, "y":0, "dataSet":"x2"},
+                  {"x":10, "y":10, "dataSet":"x1"}, {"x":10, "y":20, "dataSet":"x2"}]
 
-nested = d3.group(graphData, d => d.dataSet);
+var nested = d3.group(graphData, d => d.dataSet);
 
 var title = 'Default Graph';
 
   const renderGraph = data => {
+
    
     const xValue = d => +d.x;
     const yValue = d => +d.y;
@@ -37,20 +35,22 @@ var title = 'Default Graph';
 
     const colourScale = d3.scaleOrdinal(d3.schemeCategory10);
     colourScale.domain(nested); 
+
+    console.log(colourScale.domain(), "test");
  
     const g = svg1.append('g')
       .attr('transform', `translate(${margin.left},${margin.top})`);
     
     const xAxis = d3.axisBottom(xScale)
       .tickSize(-innerHeight)
-      .tickPadding(15);
+      .tickPadding(10);
     
     const yAxis = d3.axisLeft(yScale)
       .tickSize(-innerWidth)
       .tickPadding(10);
     
-    const yAxisG = g.append('g').call(yAxis);
-    yAxisG.selectAll('.domain').remove();
+    const yAxisG = g.append('g').call(yAxis)
+    .style("stroke-dasharray", ("1, 2"));  
     
     yAxisG.append('text')
         .attr('class', 'axis-label')
@@ -62,10 +62,9 @@ var title = 'Default Graph';
         .text(yAxisLabel);
     
     const xAxisG = g.append('g').call(xAxis)
+      .style("stroke-dasharray", ("1, 2")) 
       .attr('transform', `translate(0,${innerHeight})`);
-    
-    xAxisG.select('.domain').remove();
-    
+        
     xAxisG.append('text')
         .attr('class', 'axis-label')
         .attr('y', 60)
@@ -88,6 +87,15 @@ var title = 'Default Graph';
         .attr('class', 'title')
         .attr('y', -15)
         .text(title);
+      
+   g.append('g')
+        .attr('transform', `translate(400,-50)`)
+        .call(colorLegend, {
+          colourScale,
+          circleRadius: 8,
+          spacing: 25,
+          textOffset: 12
+        });
   };
 
-  renderGraph(graphData);
+ renderGraph(graphData);

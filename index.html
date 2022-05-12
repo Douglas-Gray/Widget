@@ -9,6 +9,7 @@
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script type="text/javascript" src="javaScript/input.js"></script>
   <script type="text/javascript" src="javaScript/chkbox.js"></script>
+  <script type="text/javascript" src="javaScript/legend.js"></script>
  
 </head>
 
@@ -16,7 +17,7 @@
 
   <div id="wrapper">
     <div id="left">
-      <svg id="svgGraph" width="600" height="600"></svg>
+      <svg id="svgGraph" width="600" height="500"></svg>
       <script type="text/javascript" src="javaScript/graph.js"></script>
       
     </div>
@@ -33,30 +34,29 @@
   
   <br>
   <label for="x1">X1: </label>
-  <input id="x1" type="text" size="20"> 
+  <input id="x1" type="text" size="10"> 
 
-  <br>
+
   <label for="x2">X2: </label>
-  <input id="x2" type="text" size="20">
+  <input id="x2" type="text" size="10">
 
-  <br>
   <label for="time">Time limit: </label>
-  <input id="time" type="text" size="20">
+  <input id="time" type="text" size="10">
   
   <br><br>
 
   <div id="chkboxgroup">
 
-      <input type="checkbox" id="stable" name="check[]" value="CheckBox1"/>
+      <input type="checkbox" id="stable" name="chkStable" value="CheckBox1"/>
       <label for="normal">Stable node</label>
    
-      <input type="checkbox" id="unstable" name="check[]" value="CheckBox2"/>
+      <input type="checkbox" id="unstable" name="chkUnstable" value="CheckBox2"/>
       <label for="normal">Unstable node</label>
 
-      <input type="checkbox" id="saddle" name="check[]" value="CheckBox4"/>
+      <input type="checkbox" id="saddle" name="chkSaddle" value="CheckBox3"/>
       <label for="vortex">Saddle node</label>
 
-      <input type="checkbox" id="focus"name="check[]" value="CheckBox3"/>
+      <input type="checkbox" id="focus"name="chkFocus" value="CheckBox4"/>
       <label for="focus">Focus/Center</label>
    
   </div>

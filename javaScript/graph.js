@@ -1,3 +1,10 @@
+/**
+ * @file 
+ * Handles rendering of the 2D line graph
+ * Using the values contained in graphData
+ *
+ */
+
 const svg1 = d3.select('#svgGraph');
 const width = +svg1.attr('width');
 const height = +svg1.attr('height');

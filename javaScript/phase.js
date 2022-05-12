@@ -1,3 +1,10 @@
+/**
+ * @file 
+ * Handles rendering of the phase space graph
+ * Using the values contained in nodeData
+ *
+ */
+
 const svg2 = d3.select("#svgPhase"); 
 
 const width2 = +svg2.attr("width"); 

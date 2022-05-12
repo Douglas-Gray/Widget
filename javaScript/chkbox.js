@@ -1,3 +1,9 @@
+/**
+ * @file 
+ * Validation to ensure only one checkbox can be selected
+ *
+ */
+
 function oneChkbox() {
     
 	var chkgroup = document.getElementById('chkboxgroup').getElementsByTagName("input");

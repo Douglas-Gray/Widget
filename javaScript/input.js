@@ -1,3 +1,10 @@
+/**
+ * @file 
+ * Handles obtaining data from the HTML page, processing the data 
+ * then adding values into arrays contained in graph.js and phase.js
+ *
+ */
+
 function renderInput(){
 
     graphData = []

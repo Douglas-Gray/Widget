@@ -1,3 +1,9 @@
+/**
+ * @file 
+ * Provides rendering of a graph legend
+ *
+ */
+
 const colorLegend = (selection, props) => {
     const {
       colourScale,

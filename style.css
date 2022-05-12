@@ -29,6 +29,11 @@ input[type=text]:focus {
   background-color: lightblue;
 }
 
+button{
+  font-family: Verdana, sans-serif;
+  padding: 5px 5px;
+}
+
 label {
     color: black;
     font-family: Verdana, sans-serif;

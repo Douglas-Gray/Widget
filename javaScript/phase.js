@@ -103,10 +103,6 @@ var renderPhase = data => {
         .attr('y', -15)
         .text(title2);
   
-        /* g.append('path')
-         .attr('class', 'line-path')
-         .attr('d', lineGenerator(data));*/ 
-
 };
 
 renderPhase(nodeData); 

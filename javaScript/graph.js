@@ -33,7 +33,8 @@ var title = 'Default Graph';
       .range([innerHeight, 0])
       .nice();
 
-    const colourScale = d3.scaleOrdinal(d3.schemeCategory10);
+    const colourScale = d3.scaleOrdinal(d3.schemeCategory10)
+    .range(["#d67b26", "#2962c4"]);
     colourScale.domain(nested); 
 
     console.log(colourScale.domain(), "test");

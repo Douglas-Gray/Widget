@@ -15,7 +15,7 @@
   
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script type="text/javascript" src="javaScript/input.js"></script>
-  <script type="text/javascript" src="javaScript/chkbox.js"></script>
+  <script type="text/javascript" src="javaScript/validation.js"></script>
   <script type="text/javascript" src="javaScript/legend.js"></script>
  
 </head>
@@ -41,14 +41,14 @@
 
   <br>
   <label for="x1">X1: </label>
-  <input id="x1" type="text" value="1" size="10"> 
+  <input id="x1" type="text" value="1" size="10" onkeypress="return isNumberKey(event)"/> 
 
 
   <label for="x2">X2: </label>
-  <input id="x2" type="text" value="2" size="10">
+  <input id="x2" type="text" value="2" size="10" onkeypress="return isNumberKey(event)"/>
 
   <label for="time">Time limit: </label>
-  <input id="time" type="text" value="10" size="10">
+  <input id="time" type="text" value="10" size="10" onkeypress="return isNumberKey(event)"/>
   
   <br><br>
 
@@ -62,9 +62,6 @@
 
       <input type="checkbox" id="saddle" name="chkSaddle" value="CheckBox3"/>
       <label for="vortex">Saddle node</label>
-
-      <input type="checkbox" id="focus"name="chkFocus" value="CheckBox4"/>
-      <label for="focus">Focus/Center</label>
    
   </div>
   <script type="text/javascript"> oneChkbox()</script> 

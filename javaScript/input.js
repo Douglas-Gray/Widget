@@ -22,7 +22,6 @@ function renderInput(){
     var stable = document.getElementById("stable").checked; 
     var unstable = document.getElementById("unstable").checked;
     var saddle = document.getElementById("saddle").checked;
-    var focus = document.getElementById("focus").checked;
 
     var x1 = x1input;
     var x2 = x2input;  
@@ -97,9 +96,12 @@ function renderInput(){
      
         }
 
-        else if (focus == true){
+        else{
 
-            /* to be completed */
+            title = 'Linear Increase'; 
+
+            x1 += x1input;
+            x2 += x2input;
         }
 
         if (x1parent != x1 || x2parent != x2){
